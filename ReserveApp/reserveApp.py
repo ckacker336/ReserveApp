@@ -3,7 +3,7 @@ from selenium.webdriver.edge.service import Service
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-from datetime import datetime
+from datetime import datetime, timedelta
 import sched, time
 import requests
 import datetime
@@ -14,9 +14,9 @@ driver = webdriver.Edge(service=service)
 driver.implicitly_wait(100)
 
 def reserve_doctor(): 
-    url = "XXX"
-    id = "XXX"
-    password = "XXX"
+    url = "https://matsuo.mdja.jp/"
+    id = "45287"
+    password = "0214"
 
     driver.get(url)
     #「午前を受付」ボタンを押す
@@ -71,6 +71,7 @@ def reserve_doctor():
 scheduler = sched.scheduler(time.time, time.sleep)
 
 dt = datetime.datetime.today()
+dt = dt + timedelta(days=1)
 dym = dt.strftime('%Y %m %d')
 reserveTime = "07:30:00"
 
